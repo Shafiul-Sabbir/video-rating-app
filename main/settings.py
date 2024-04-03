@@ -20,6 +20,7 @@ INSTALLED_APPS = [
 
 MIDDLEWARE = [
     'django.middleware.security.SecurityMiddleware',
+    "whitenoise.middleware.WhiteNoiseMiddleware",
     'django.contrib.sessions.middleware.SessionMiddleware',
     'django.middleware.common.CommonMiddleware',
     'django.middleware.csrf.CsrfViewMiddleware',
@@ -61,7 +62,7 @@ SECRET_KEY = 'django-insecure-sorfwj7jbssj)*x47!=$!fr6ac%1z)0+$!a9i2_yd@f27@f$4a
 # SECURITY WARNING: don't run with debug turned on in production!
 DEBUG = True
 
-ALLOWED_HOSTS = []
+ALLOWED_HOSTS = ['127.0.0.1', 'localhost']
 
 
 # Password validation
@@ -103,6 +104,20 @@ DEFAULT_AUTO_FIELD = 'django.db.models.BigAutoField'
 STATIC_ROOT = os.path.join(BASE_DIR, 'static')
 STATIC_URL = 'static/' # this line is using for defining static folder.
 
+STATICFILES_STORAGE = 'whitenoise.storage.CompressedManifestStaticFilesStorage'
+
 CRISPY_ALLOWED_TEMPLATE_PACKS = 'bootstrap5'
 CRISPY_TEMPLATE_PACK = 'bootstrap5'
 # these upper two line is required for supporting bootstrap form handling using bootstrap.
+
+LOGIN_REDIRECT_URL = 'movie-list'
+# this is the default route for the log in, when we log in first, we will be redirected to the 'blog-home'.
+LOGIN_URL = 'login' 
+#if we dont include this here we will encounter an error for trying to enter a profile of not being logged in
+
+EMAIL_BACKEND = 'django.core.mail.backends.smtp.EmailBackend'
+EMAIL_HOST = 'smtp.gmail.com'
+EMAIL_PORT = 587
+EMAIL_USE_TLS = True
+EMAIL_HOST_USER = 'sabbirvai82@gmail.com'
+EMAIL_HOST_PASSWORD = 'ceug hhys tqio vecn'
